@@ -1,4 +1,4 @@
-# Julius_Survey_Backend
+# Survey_Backend
 
 This project implements a visual personality-based assessment similar to Traitify/Paradox using:
     - Express.js backend (Node)
@@ -38,7 +38,7 @@ Core tables:
     - assessments → one per test session
     - responses → one per slide per user
     - scores → placeholder for OCEAN/RAISEC scoring
-    - company_algo → custom mapping table for weight combinations
+    - algo → custom mapping table for weight combinations
 
 4. Migrations
 
