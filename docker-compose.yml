@@ -1,0 +1,36 @@
+services:
+  julius_survey_db:
+    image: postgres:16
+    container_name: survey_pg
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: survey_db
+    ports:
+      - "5432:5432" # optional if you want host access too
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d survey_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    container_name: api
+    command: ["node", "server.js"]
+    env_file: .env
+    depends_on:
+      julius_survey_db:
+        condition: service_healthy
+    # If you want hot reload during dev:
+    volumes:
+      - .:/app  
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
+
+volumes:
+  db-data:
