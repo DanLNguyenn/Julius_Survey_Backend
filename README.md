@@ -85,7 +85,7 @@ Step 5: Open the app --> Open at: http://localhost:3000
 
 List tables --> docker exec -it survey_pg psql -U postgres -d survey_db -c "\dt"
 Check slides --> docker exec -it survey_pg psql -U postgres -d survey_db -c "SELECT * FROM slides;"
-Check responses --> docker exec -it survey_pg psql -U postgres -d survey_db -c "SELECT * FROM responses ORDER BY id;"
+Check responses --> docker exec -it survey_pg psql -U postgres -d survey_db -c "SELECT * FROM responses ORDER BY assessment_id;"
 
 # Common Errors and Fixes
 
